@@ -10,6 +10,7 @@ class L298 {
 		void setSpeed(int speed, int right);
 	private:
 		unsigned char mPins[2][2];
+		void pinSet();
 };
 
 #endif

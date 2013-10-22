@@ -5,21 +5,18 @@ L298::L298(){
 	mPins[0][1] = 10;
 	mPins[1][0] = 5;
 	mPins[1][1] = 6;
-	for(int i =0; i <2; i++){
-		for (int x=0; x<2;x++){
-			pinMode(mPins[i][x], OUTPUT);
-			digitalWrite(mPins[i][x], HIGH); /*breaks at start*/
-		}
-	}
+	pinSet();
 }
-L298::L298(unsigned char PWMA1, unsigned char PWMA2,
-			 unsigned char PWMB1, unsigned char PWMB2){ /*modify pins from default here*/
+L298::L298(unsigned char PWMA1, unsigned char PWMA2, unsigned char PWMB1, unsigned char PWMB2){ /*modify pins from default here*/
 	mPins[0][0] = PWMA1;
 	mPins[0][1] = PWMA2;
 	mPins[1][0] = PWMB1;
 	mPins[1][1] = PWMB2;
-	for(int i =0; i <2; i++){
-		for (int x=0; x<2;x++){
+	pinSet();
+}
+void L298::pinSet(){
+	for(unsigned char i =0; i <2; i++){
+		for (unsigned char x=0; x<2;x++){
 			pinMode(mPins[i][x], OUTPUT);
 			digitalWrite(mPins[i][x], HIGH); /*breaks at start*/
 		}
