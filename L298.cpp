@@ -26,19 +26,18 @@ void L298::setSpeed(int speed, int right){ /*speed is left, then becomes right l
 	for (int i=0; i<2; i++){
 		if(i) speed = right;
 		if(speed > 0){
-			if(speed > 255) speed  255;
+			if(speed > 255) speed = 255;
 			digitalWrite(mPins[i][0], LOW);
-			analogWrite(mPins[i][1], speed);
 		}
 		else if(speed < 0){
 			speed = speed + 255;
 			if(speed < 0) speed = 0;
 			digitalWrite(mPins[i][0], HIGH);
-			analogWrite(mPins[i][1], speed);
 		}
 		else {
 			digitalWrite(mPins[i][0], HIGH);
-			digitalWrite(mPins[i][1], HIGH);
+			speed = 255;
 		}
+		analogWrite(mPins[i][1], speed);
 	}
 }
