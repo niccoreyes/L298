@@ -5,8 +5,8 @@
 class L298 {
 	public:
 		L298(); /*default pin arrangement*/
-		L298(unsigned char PWMA1, unsigned char PWMA2,
-			 unsigned char PWMB1, unsigned char PWMB2);
+		L298(unsigned char DIRA, unsigned char PWMA,
+			 unsigned char DIRB, unsigned char PWMB);
 		void setSpeed(int speed, int right);
 	private:
 		unsigned char mPins[2][2];
