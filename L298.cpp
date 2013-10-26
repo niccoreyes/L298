@@ -23,7 +23,7 @@ void L298::pinSet(){
 	}
 }
 void L298::setSpeed(int speed, int right){ /*speed is left, then becomes right later on*/
-	for (int i=0; i<2; i++){
+	for (unsigned char i=0; i<2; i++){
 		if(i) speed = right;
 		if(speed > 0){
 			if(speed > 255) speed = 255;
