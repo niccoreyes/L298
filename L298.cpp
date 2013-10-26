@@ -1,20 +1,13 @@
 #include "L298.h"
 
 L298::L298(){
-	mPins[0][0] = 9;
-	mPins[0][1] = 10;
-	mPins[1][0] = 5;
-	mPins[1][1] = 6;
-	pinSet();
+	L298(9,10,5,6);
 }
 L298::L298(unsigned char DIRA, unsigned char PWMA, unsigned char DIRB, unsigned char PWMB){ /*modify pins from default here*/
 	mPins[0][0] = DIRA;
 	mPins[0][1] = PWMA;
 	mPins[1][0] = DIRB;
 	mPins[1][1] = PWMB;
-	pinSet();
-}
-void L298::pinSet(){
 	for(unsigned char i =0; i <2; i++){
 		for (unsigned char x=0; x<2;x++){
 			pinMode(mPins[i][x], OUTPUT);
