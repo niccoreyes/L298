@@ -1,7 +1,7 @@
 #include "L298.h"
 
 L298::L298(){
-	L298(9,10,5,6);
+	L298(11,10,9,8);
 }
 L298::L298(unsigned char DIRA, unsigned char PWMA, unsigned char DIRB, unsigned char PWMB){ /*modify pins from default here*/
 	mPins[0][0] = DIRA;
@@ -18,19 +18,20 @@ L298::L298(unsigned char DIRA, unsigned char PWMA, unsigned char DIRB, unsigned 
 void L298::setSpeed(int speed, int right){ /*speed is left, then becomes right later on*/
 	for (unsigned char i=0; i<2; i++){
 		if(i) speed = right;
-		if(speed > 0){
-			if(speed > 255) speed = 255;
+		if(!speed){
 			digitalWrite(mPins[i][0], LOW);
-		}
-		else if(speed < 0){
-			speed = speed + 255;
-			if(speed < 0) speed = 0;
-			digitalWrite(mPins[i][0], HIGH);
+			digitalWrite(mPins[i][1], LOW);
 		}
 		else {
-			digitalWrite(mPins[i][0], HIGH);
-			speed = 255;
+			if(speed >=0){
+				digitalWrite(mPins[i][0], LOW);
+			}
+			else {
+				speed = speed + 255;
+				digitalWrite(mPins[i][0], HIGH);
+			}
+			analogWrite(mPins[i][1], speed);
 		}
-		analogWrite(mPins[i][1], speed);
+		
 	}
 }
